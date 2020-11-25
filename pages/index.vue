@@ -57,8 +57,28 @@
       >
         Back
       </v-btn>
-      <img src="http://127.0.0.1:5000/video_feed_1" width="40%" style="float:right">
-      <img src="http://127.0.0.1:5000/video_feed_2" width="40%" style="float:left">
+      <v-btn
+        class="ma-2"
+        color="primary"
+        @click="switch_cameras()"
+      >
+        Switch
+      </v-btn>
+      <v-btn
+        class="ma-2"
+        color="primary"
+        @click="scramble()"
+      >
+        Scramble
+      </v-btn>
+      <div style="float:left"  width="40%">
+        <h3>Top</h3>
+        <img src="http://127.0.0.1:5000/video_feed_1">
+      </div>
+      <div style="float:right" width="40%">
+        <h3>Bottom</h3>
+        <img src="http://127.0.0.1:5000/video_feed_2">
+      </div>
     </div>
   </v-app>
 </template>
@@ -91,6 +111,12 @@ export default {
     },
     async turn(side) {
       await this.$axios.get(`/api/turn?side=${side}&direction=c`)
+    },
+    async switch_cameras() {
+      await this.$axios.get(`/api/switch_video_feeds`)
+    },
+    async scramble() {
+      await this.$axios.get(`/api/scramble`)
     }
   }
 }
