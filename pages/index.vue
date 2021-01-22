@@ -85,6 +85,13 @@
         >
           Scramble
         </button>
+        <button
+          type="button"
+          class="btn btn-warning"
+          @click="solve()"
+        >
+          Solve
+        </button>
       </div>
     </div>
 </template>
@@ -111,21 +118,33 @@ export default {
   },
   methods: {
     async powerOff() {
-      await this.$axios.get('/api/power?state=False')
+      await this.$axios.get('/api/power?state=off')
     },
     async powerOn() {
-      await this.$axios.get('/api/power?state=True')
+      await this.$axios.get('/api/power?state=on')
     },
     async turn(side) {
       await this.$axios.get(`/api/turn?side=${side}&direction=c`)
 
-      this.cubePosition = (await this.$axios.get('/api/get_cube_position')).data
+      this.get_cube_position()
     },
     async switch_cameras() {
       await this.$axios.get(`/api/switch_video_feeds`)
     },
     async scramble() {
       await this.$axios.get(`/api/scramble`)
+
+      this.get_cube_position()
+    },
+    async get_cube_position() {
+      this.cubePosition = (await this.$axios.get('/api/get_cube_position')).data
+    },
+    async solve() {
+      try {
+        this.cubePosition = (await this.$axios.get('/api/solve')).data
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }
