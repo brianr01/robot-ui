@@ -11,3 +11,12 @@ $ npm run dev
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+## Startup
+```bash
+make up
+```
+or
+```bash
+npm run dev
+```
