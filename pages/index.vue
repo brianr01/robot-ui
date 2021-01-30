@@ -3,11 +3,11 @@
       <div class="d-flex flex-column">
         <div>
           <h3>Top</h3>
-          <img src="http://127.0.0.1:5000/video_feed_1">
+          <img src="http://127.0.0.1:5000/video_feed_2">
         </div>
         <div>
           <h3>Bottom</h3>
-          <img src="http://127.0.0.1:5000/video_feed_2">
+          <img src="http://127.0.0.1:5000/video_feed_1">
         </div>
       </div>
       <div class="m-3 d-flex justify-content-center">
@@ -145,6 +145,7 @@ export default {
       } catch (error) {
         console.log(error)
       }
+      this.get_cube_position()
     }
   }
 }
